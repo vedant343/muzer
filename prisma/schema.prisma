@@ -15,8 +15,8 @@ datasource db {
 
 model User {
   id           String   @id @default(uuid())
-  email        String   @unique
-  streams      Stream[]
+  email        String   
+  streams      Stream[] 
   provider     Provider
   upvotes      Upvote[]
 }
@@ -27,7 +27,7 @@ model Stream {
   active        Boolean        @default(true)
   upvotes       Upvote[]
   userId        String
-  user          User           @relation(fields: [userId], references: [id], name: "user")
+  user          User           @relation(fields: [userId], references: [id])
 }
 
 model Upvote {
@@ -35,8 +35,7 @@ model Upvote {
   userId   String
   streamId String
   user     User   @relation(fields: [userId], references: [id])
-  stream   Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
-
+  stream   Stream @relation(fields: [streamId], references: [id])
   @@unique([userId, streamId])
 } 
 
@@ -47,5 +46,4 @@ enum StreamType {
 
 enum Provider {
   Google
-  Credentials
 }
