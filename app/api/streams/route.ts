@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prismaClient } from "@/app/lib/db";
 
+// regular exp for youtube url
+// generated from regex generator
 const YT_REGEX = new RegExp(
   "^https?://(www.)?youtube.com/watch?v=[w-]+(&t=d+s)?$"
 );
